@@ -67,9 +67,10 @@ def import_run(
     exp = mlflow_utils.set_experiment(mlflow_client, dbx_client, experiment_name)
     src_run_path = os.path.join(input_dir, "run.json")
     src_run_dct = io_utils.read_file_mlflow(src_run_path)
+    run_id = src_run_dct["info"].get("run_id",None)
     in_databricks = "DATABRICKS_RUNTIME_VERSION" in os.environ
 
-    run = mlflow_client.create_run(exp.experiment_id)
+    run = mlflow_client.create_run(experiment_id=exp.experiment_id, run_id=run_id)
     run_id = run.info.run_id
     try:
         run_data_importer.import_run_data(
