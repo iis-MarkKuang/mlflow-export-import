@@ -70,7 +70,8 @@ def import_run(
     run_id = src_run_dct["info"].get("run_id",None)
     in_databricks = "DATABRICKS_RUNTIME_VERSION" in os.environ
 
-    run = mlflow_client.create_run(experiment_id=exp.experiment_id, run_id=run_id)
+    # run = mlflow_client.create_run(experiment_id=exp.experiment_id, run_id=run_id)
+    run = mlflow_client.create_run(experiment_id=exp.experiment_id)
     run_id = run.info.run_id
     try:
         run_data_importer.import_run_data(
