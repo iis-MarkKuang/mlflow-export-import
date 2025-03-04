@@ -103,7 +103,8 @@ def nested_tags(dst_client, run_ids_mapping):
     """
     for _,v in run_ids_mapping.items():
         src_parent_run_id = v.get("src_parent_run_id",None)
-        if src_parent_run_id:
+        # if src_parent_run_id:
+        if src_parent_run_id and src_parent_run_id in run_ids_mapping:
             dst_run_id = v["dst_run_id"]
             dst_parent_run_id = run_ids_mapping[src_parent_run_id]["dst_run_id"]
             dst_client.set_tag(dst_run_id, "mlflow.parentRunId", dst_parent_run_id)
