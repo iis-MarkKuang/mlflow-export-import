@@ -101,6 +101,8 @@ def _import_experiments(mlflow_client,
         use_threads = use_threads,
         mlflow_client = mlflow_client
     )
+    print(exp_run_info_map)
+
     duration = round(time.time()-start_time, 1)
 
     exp_run_info_map_ok = {}
